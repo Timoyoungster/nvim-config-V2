@@ -19,8 +19,6 @@ vim.opt.rtp:prepend(lazypath)
 --
 require('lazy').setup({
   -- NOTE: Plugins can be added with a link (or for a github repo: 'owner/repo' link).
-  'tpope/vim-sleuth', -- Detect tabstop and shiftwidth automatically
-
   -- NOTE: Plugins can also be added by using a table,
   -- with the first argument being the link and the following
   -- keys can be used to configure plugin behavior/loading/etc.
@@ -51,12 +49,16 @@ require('lazy').setup({
     },
   },
 
+  -- Git
   {
     'tpope/vim-fugitive',
-    config = function()
-      vim.keymap.set('n', '<leader>G', ':Git<CR>')
-    end
+    keys = {
+      { '<leader>g', ':Git<CR>' }
+    },
   },
+
+  -- autopairs
+  -- 'windwp/nvim-autopairs',
 
   -- fishin for files
   {
@@ -83,14 +85,42 @@ require('lazy').setup({
   -- that big'ol tree
   {
     'mbbill/undotree',
-    config = function()
-      vim.keymap.set("n", "<leader>uu", vim.cmd.UndotreeToggle)
-      vim.keymap.set("n", "<leader>uf", vim.cmd.UndotreeFocus)
-    end
+    keys = {
+      { "<leader>uu", vim.cmd.UndotreeToggle },
+      { "<leader>uf", vim.cmd.UndotreeFocus },
+    },
   },
 
   -- collaboration
-  'jbyuki/instant.nvim',
+  {
+    'jbyuki/instant.nvim',
+    lazy = true
+  },
+
+  -- university
+  {
+    'luk400/vim-jukit',
+    event = 'BufEnter *_jukit.py',
+    config = function()
+      vim.g.jukit_mappings = 0
+      vim.g.jukit_convert_overwrite_default = 1
+      vim.cmd([[
+        nnoremap <leader>jc :call jukit#convert#notebook_convert("jupyter-notebook")<cr>
+        nnoremap <leader>jr :call jukit#send#section(0)<cr>
+        nnoremap <leader>jR :call jukit#send#all()<cr>
+        nnoremap <leader>jso :call jukit#splits#output()<cr>
+        nnoremap <leader>jsc :call jukit#splits#close_output_split()<cr>
+        nnoremap <leader>jj :call jukit#cells#create_below(0)<cr>
+        nnoremap <leader>jk :call jukit#cells#create_above(0)<cr>
+        nnoremap <leader>jmj :call jukit#cells#create_below(1)<cr>
+        nnoremap <leader>jmk :call jukit#cells#create_above(1)<cr>
+        nnoremap <leader>JJ :call jukit#cells#move_down()<cr>
+        nnoremap <leader>JK :call jukit#cells#move_up()<cr>
+        nnoremap <leader>jdo :call jukit#cells#delete_outputs(0)<cr>
+        nnoremap <leader>jda :call jukit#cells#delete_outputs(1)<cr>
+      ]])
+    end
+  },
 
   -- NOTE: Plugins can also be configured to run lua code when they are loaded.
   --
@@ -156,6 +186,7 @@ require('lazy').setup({
       { 'nvim-tree/nvim-web-devicons', enabled = vim.g.have_nerd_font },
     },
     config = function()
+
       -- Telescope is a fuzzy finder that comes with a lot of different things that
       -- it can fuzzy find! It's more than just a "file finder", it can search
       -- many different aspects of Neovim, your workspace, LSP, and more!
@@ -177,6 +208,7 @@ require('lazy').setup({
 
       -- [[ Configure Telescope ]]
       -- See `:help telescope` and `:help telescope.setup()`
+
       require('telescope').setup {
         -- You can put your default mappings / updates / etc. in here
         --  All the info you're looking for is in `:help telescope.setup()`
@@ -249,6 +281,7 @@ require('lazy').setup({
       { 'j-hui/fidget.nvim', opts = {} },
     },
     config = function()
+
       -- Brief Aside: **What is LSP?**
       --
       -- LSP is an acronym you've probably heard, but might not understand what it is.
@@ -350,10 +383,13 @@ require('lazy').setup({
       --  - capabilities (table): Override fields in capabilities. Can be used to disable certain LSP features.
       --  - settings (table): Override the default settings passed when initializing the server.
       --        For example, to see the options for `lua_ls`, you could go to: https://luals.github.io/wiki/settings/
+
       local servers = {
         clangd = {},
         -- gopls = {},
-        pyright = {},
+        pyright = {
+
+        },
         rust_analyzer = {},
         -- ... etc. See `:help lspconfig-all` for a list of all the pre-configured LSPs
         --
@@ -578,6 +614,10 @@ require('lazy').setup({
 
   { -- Highlight, edit, and navigate code
     'nvim-treesitter/nvim-treesitter',
+    dependencies = {
+      'nvim-treesitter/nvim-treesitter-context',
+      'nvim-treesitter/playground',
+    },
     build = ':TSUpdate',
     config = function()
       -- [[ Configure Treesitter ]] See `:help nvim-treesitter`
@@ -599,25 +639,6 @@ require('lazy').setup({
       --    - Treesitter + textobjects: https://github.com/nvim-treesitter/nvim-treesitter-textobjects
     end,
   },
-
-  -- The following two comments only work if you have downloaded the kickstart repo, not just copy pasted the
-  -- init.lua. If you want these files, they are in the repository, so you can just download them and
-  -- put them in the right spots if you want.
-
-  -- NOTE: Next step on your Neovim journey: Add/Configure additional plugins for kickstart
-  --
-  --  Here are some example plugins that I've included in the kickstart repository.
-  --  Uncomment any of the lines below to enable them (you will need to restart nvim).
-  --
-  -- require 'kickstart.plugins.debug',
-  -- require 'kickstart.plugins.indent_line',
-
-  -- NOTE: The import below can automatically add your own plugins, configuration, etc from `lua/custom/plugins/*.lua`
-  --    This is the easiest way to modularize your config.
-  --
-  --  Uncomment the following line and add your plugins to `lua/custom/plugins/*.lua` to get going.
-  --    For additional information, see `:help lazy.nvim-lazy.nvim-structuring-your-plugins`
-  -- { import = 'custom.plugins' },
 }, {
   ui = {
     -- If you have a Nerd Font, set icons to an empty table which will use the
