@@ -659,4 +659,7 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
+  install = {
+    colorscheme = { "tokyonight-night" }
+  },
 })
