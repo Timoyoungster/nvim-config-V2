@@ -83,7 +83,7 @@ require('lazy').setup({
 
   { -- university
     'luk400/vim-jukit',
-    event = 'BufEnter *_jukit.py',
+    event = { 'BufEnter *_jukit.py', 'BufEnter *_jukit.ipynb' },
     config = function()
       vim.g.jukit_mappings = 0
       vim.g.jukit_convert_overwrite_default = 1
