@@ -32,6 +32,9 @@ vim.opt.softtabstop = 2
 vim.opt.shiftwidth = 2
 vim.opt.expandtab = true
 
+vim.g.python_recommended_style = false
+vim.g.markdown_recommended_style = false
+
 -- Save undo history
 vim.opt.undodir = os.getenv("HOME") .. "/.cache/nvim/undodir"
 vim.opt.undofile = true
