@@ -81,6 +81,10 @@ require('lazy').setup({
     lazy = true
   },
 
+  { -- json queries
+    'jrop/jq.nvim'
+  },
+
   { -- university
     'luk400/vim-jukit',
     event = { 'BufEnter *_jukit.py', 'BufEnter *_jukit.ipynb' },
