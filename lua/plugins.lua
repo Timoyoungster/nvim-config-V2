@@ -24,6 +24,17 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
+  -- math
+  {
+    'sk1418/HowMuch',
+    config = function()
+      vim.cmd([[
+        let g:HowMuch_scale = 16
+        nnoremap <leader>?$ v$h<Plug>AutoCalcAppendWithEq
+      ]])
+    end
+  },
+
   { -- Adds git related signs to the gutter, as well as utilities for managing changes
     'lewis6991/gitsigns.nvim',
     opts = {
