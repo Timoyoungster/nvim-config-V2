@@ -33,3 +33,6 @@ require('keymap')
 
 -- load plugins
 require('plugins')
+
+-- load misc
+require('misc')
