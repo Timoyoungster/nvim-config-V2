@@ -470,9 +470,10 @@ require('lazy').setup({
     },
     build = ':TSUpdate',
     config = function()
-
+      vim.opt.runtimepath:append("$HOME/.local/share/treesitter")
       ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
+        parser_install_dir = "$HOME/.local/share/treesitter",
         ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
         -- Autoinstall languages that are not installed
         auto_install = true,
