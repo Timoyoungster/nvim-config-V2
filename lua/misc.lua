@@ -66,3 +66,14 @@ vim.api.nvim_create_user_command("PyTestOnSave", function ()
     { "rm", ".report.json" }
   })
 end, {})
+
+
+-- custom signature help
+
+vim.lsp.handlers['textDocument/signatureHelp']  = vim.lsp.with(
+  vim.lsp.handlers['signature_help'], {
+    border = 'single',
+    wrap = true,
+    max_height = 5,
+    close_events = { "CursorMoved", "CursorMovedI", "BufHidden" },
+})
