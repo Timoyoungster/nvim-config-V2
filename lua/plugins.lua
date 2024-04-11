@@ -373,11 +373,24 @@ require('lazy').setup({
             luasnip.lsp_expand(args.body)
           end,
         },
-        completion = { completeopt = 'menu,menuone,noinsert' },
+
+        completion = {
+          autocomplete = false,
+          completeopt = 'menu,menuone,noinsert'
+        },
 
         mapping = cmp.mapping.preset.insert {
+
           -- Select the [n]ext item
-          ['<C-n>'] = cmp.mapping.select_next_item(),
+          -- ['<C-n>'] = cmp.mapping.select_next_item(),
+          ['<C-n>'] = function()
+                        if cmp.visible() then
+                          cmp.select_next_item()
+                        else
+                          cmp.complete {}
+                        end
+                      end,
+
           -- Select the [p]revious item
           ['<C-p>'] = cmp.mapping.select_prev_item(),
 
@@ -481,7 +494,7 @@ require('lazy').setup({
           multiline_threshold = 3,
         },
       },
-      'nvim-treesitter/playground',
+      -- 'nvim-treesitter/playground',
     },
     build = ':TSUpdate',
     config = function()
