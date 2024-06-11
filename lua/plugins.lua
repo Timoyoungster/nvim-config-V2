@@ -116,6 +116,7 @@ require('lazy').setup({
         nnoremap <leader>JK :call jukit#cells#move_up()<cr>
         nnoremap <leader>jdo :call jukit#cells#delete_outputs(0)<cr>
         nnoremap <leader>jda :call jukit#cells#delete_outputs(1)<cr>
+        nnoremap <leader>jdc :call jukit#cells#delete()<cr>
       ]])
     end
   },
@@ -434,15 +435,15 @@ require('lazy').setup({
 
   --   'folke/tokyonight.nvim',
   --   'rebelot/kanagawa.nvim',
-  { -- colorscheme
-    'rose-pine/neovim',
-    name = 'rose-pine',
-    lazy = false, -- make sure we load this during startup if it is your main colorscheme
-    priority = 1000, -- make sure to load this before all the other start plugins
-    config = function()
-      vim.cmd.colorscheme 'rose-pine'
-    end,
-  },
+  -- { -- colorscheme
+  --   'rose-pine/neovim',
+  --   name = 'rose-pine',
+  --   lazy = false, -- make sure we load this during startup if it is your main colorscheme
+  --   priority = 1000, -- make sure to load this before all the other start plugins
+  --   config = function()
+  --     vim.cmd.colorscheme 'rose-pine'
+  --   end,
+  -- },
 
 
   -- Highlight todo, notes, etc in comments
@@ -492,7 +493,7 @@ require('lazy').setup({
           multiline_threshold = 3,
         },
       },
-      -- 'nvim-treesitter/playground',
+      'nvim-treesitter/playground',
     },
     build = ':TSUpdate',
     config = function()
@@ -528,7 +529,7 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
-  install = {
-    colorscheme = { "rose-pine" }
-  },
+  -- install = {
+  --   colorscheme = { "rose-pine" }
+  -- },
 })
