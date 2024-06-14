@@ -529,7 +529,7 @@ require('lazy').setup({
       lazy = '💤 ',
     },
   },
-  -- install = {
-  --   colorscheme = { "rose-pine" }
-  -- },
+  install = {
+    colorscheme = { "default" }
+  },
 })
