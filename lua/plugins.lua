@@ -165,6 +165,13 @@ require('lazy').setup({
     config = function()
 
       require('telescope').setup {
+        defaults = {
+          mappings = {
+            i = {
+              ["<C-y>"] = "select_default",
+            },
+          },
+        },
         extensions = {
           ['ui-select'] = {
             require('telescope.themes').get_dropdown(),
