@@ -18,6 +18,7 @@ vim.keymap.set("n", "<C-j>", "J")
 -- vim.keymap.set("v", "q", "<Esc>") -> maybe complications with other maps
 vim.keymap.set("v", "J", ":m '>+1<CR>gv=gv")
 vim.keymap.set("v", "K", ":m '<-2<CR>gv=gv")
+vim.keymap.set("v", "/", "\"ay/<C-r>a<CR>")
 
 -- greatest remap ever ('theprimeagen')
 vim.keymap.set("x", "<leader>p", "\"_dP")
