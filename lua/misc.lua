@@ -67,6 +67,20 @@ vim.api.nvim_create_user_command("PyTestOnSave", function ()
   })
 end, {})
 
+-- gofmt on save
+
+local go_group = vim.api.nvim_create_augroup("go-augroup", { clear = true })
+
+vim.api.nvim_create_autocmd("BufWritePre", {
+  group = go_group,
+  pattern = { "*.go" },
+  callback = function()
+    local pos = vim.api.nvim_win_get_cursor(0)
+    vim.cmd("%!gofmt")
+    vim.cmd("retab")
+    vim.api.nvim_win_set_cursor(0, pos)
+  end
+})
 
 -- custom signature help
 
@@ -77,3 +91,4 @@ vim.lsp.handlers['textDocument/signatureHelp']  = vim.lsp.with(
     max_height = 5,
     close_events = { "CursorMoved", "CursorMovedI", "BufHidden" },
 })
+
