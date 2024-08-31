@@ -79,6 +79,24 @@ require('lazy').setup({
     end
   },
 
+  -- tmux navigation integration
+  { 'alexghergh/nvim-tmux-navigation', config = function()
+      require'nvim-tmux-navigation'.setup {
+          keybindings = {
+              left = "<C-h>",
+              down = "<C-j>",
+              up = "<C-k>",
+              right = "<C-l>",
+              -- last_active = "<C-\\>",
+              -- next = "<C-Space>",
+          }
+      }
+      vim.cmd(
+        "let g:Netrw_UserMaps = [['<C-l>', '<C-U>NvimTmuxNavigateRight<cr>']]"
+      )
+  end
+  },
+
   { -- that big'ol tree
     'mbbill/undotree',
     keys = {
@@ -492,18 +510,21 @@ require('lazy').setup({
         },
       },
       'nvim-treesitter/playground',
+      'folke/twilight.nvim',
     },
     build = ':TSUpdate',
     config = function()
       vim.opt.runtimepath:append("$HOME/.local/share/treesitter")
-      ---@diagnostic disable-next-line: missing-fields
       require('nvim-treesitter.configs').setup {
         parser_install_dir = "$HOME/.local/share/treesitter",
         ensure_installed = { 'bash', 'c', 'html', 'lua', 'markdown', 'vim', 'vimdoc' },
         -- Autoinstall languages that are not installed
         auto_install = true,
+        sync_install = true,
         highlight = { enable = true },
         indent = { enable = true },
+        modules = {},
+        ignore_install = {},
       }
     end,
   },
