@@ -75,10 +75,14 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   group = go_group,
   pattern = { "*.go" },
   callback = function()
-    local pos = vim.api.nvim_win_get_cursor(0)
+    local saved_view = vim.fn.winsaveview()
     vim.cmd("%!gofmt")
-    vim.cmd("retab")
-    vim.api.nvim_win_set_cursor(0, pos)
+    if vim.v.shell_error > 0 then
+      vim.fn.undo()
+    else
+      vim.cmd("retab")
+    end
+    vim.fn.winrestview(saved_view)
   end
 })
 
