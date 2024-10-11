@@ -91,8 +91,13 @@ require('lazy').setup({
     config = function()
       vim.g.jukit_mappings = 0
       vim.g.jukit_convert_overwrite_default = 1
+      vim.g.jukit_convert_open_default = 0
+      -- vim.g.jukit_terminal = 'tmux'
+      vim.g.jukit_inline_plotting = 0
+      vim.g.jukit_pdf_viewer = "zathura"
       vim.cmd([[
         nnoremap <leader>jc :call jukit#convert#notebook_convert("jupyter-notebook")<cr>
+        nnoremap <leader>jtp :call jukit#convert#save_nb_to_file(1,1,'pdf')<cr>
         nnoremap <leader>jr :call jukit#send#section(0)<cr>
         nnoremap <leader>jR :call jukit#send#all()<cr>
         nnoremap <leader>jso :call jukit#splits#output()<cr>
