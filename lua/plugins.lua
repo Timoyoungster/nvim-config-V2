@@ -68,22 +68,6 @@ require('lazy').setup({
     end
   },
 
-  -- tmux navigation integration
-  { 'alexghergh/nvim-tmux-navigation', config = function()
-      require'nvim-tmux-navigation'.setup {
-          keybindings = {
-              left = "<C-h>",
-              down = "<C-j>",
-              up = "<C-k>",
-              right = "<C-l>",
-          }
-      }
-      vim.cmd(
-        "let g:Netrw_UserMaps = [['<C-l>', '<C-U>NvimTmuxNavigateRight<cr>']]"
-      )
-  end
-  },
-
   { -- that big'ol tree
     'mbbill/undotree',
     keys = {

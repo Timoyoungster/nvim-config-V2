@@ -76,9 +76,9 @@ vim.api.nvim_create_autocmd("BufWritePre", {
   pattern = { "*.go" },
   callback = function()
     local saved_view = vim.fn.winsaveview()
-    vim.cmd("%!gofmt")
+    vim.cmd("silent %!gofmt")
     if vim.v.shell_error > 0 then
-      vim.fn.undo()
+      vim.cmd[[silent undo]]
     else
       vim.cmd("retab")
     end
