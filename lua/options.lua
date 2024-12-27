@@ -75,3 +75,4 @@ vim.opt.foldlevel = 100
 
 -- term colors
 vim.opt.termguicolors = false
+vim.cmd('colorscheme tx16')
