@@ -85,6 +85,13 @@ require('lazy').setup({
     'jrop/jq.nvim'
   },
 
+  { -- markdown previewer
+      "iamcco/markdown-preview.nvim",
+      cmd = { "MarkdownPreviewToggle", "MarkdownPreview", "MarkdownPreviewStop" },
+      ft = { "markdown" },
+      build = ':call mkdp#util#install()'
+  },
+
   { -- university
     'luk400/vim-jukit',
     event = { 'BufEnter *_jukit.py', 'BufEnter *_jukit.ipynb' },
