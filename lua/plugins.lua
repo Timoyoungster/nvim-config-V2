@@ -91,7 +91,7 @@ require('lazy').setup({
     ft = { "markdown" },
     build = ':call mkdp#util#install()',
     config = function()
-      vim.keymap.set("n", "gm", ":MarkdownPreviewToggle")
+      vim.keymap.set("n", "gm", ":MarkdownPreviewToggle<cr>")
     end,
   },
 
