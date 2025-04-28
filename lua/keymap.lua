@@ -51,11 +51,23 @@ vim.keymap.set('n', '<leader>nc',
   end,
   { desc = 'Creates a new node at the current line and enables the sign' }
 )
+vim.keymap.set('n', '<leader>npc',
+  function()
+    require('quicknote').NewNoteAtCWD()
+  end,
+  { desc = 'Creates a new node for the current cwd' }
+)
 vim.keymap.set('n', '<leader>no',
   function()
     require('quicknote').OpenNoteAtCurrentLine()
   end,
   { desc = 'Opens the note of the current line' }
+)
+vim.keymap.set('n', '<leader>npo',
+  function()
+    require('quicknote').OpenNoteAtCWD()
+  end,
+  { desc = 'Opens the note for the current cwd' }
 )
 vim.keymap.set('n', '<leader>nd',
   function()
