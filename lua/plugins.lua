@@ -13,6 +13,20 @@ require('lazy').setup({
   -- "gc" to comment visual regions/lines
   { 'numToStr/Comment.nvim', opts = {} },
 
+  -- quick note
+  {
+    'RutaTang/quicknote.nvim',
+    config = function()
+      require('quicknote').setup({
+        mode = 'resident',
+        sign = 'N',
+        filetype = 'md',
+        git_branch_recognizable = true,
+      })
+    end,
+    dependencies = { 'nvim-lua/plenary.nvim' },
+  },
+
   -- math
   {
     'sk1418/HowMuch',

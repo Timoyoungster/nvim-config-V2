@@ -43,3 +43,35 @@ vim.keymap.set('t', '<Esc><Esc>', '<C-\\><C-n>', { desc = 'Exit terminal mode' }
 -- open signature help
 vim.keymap.set('i', '<C-s>', vim.lsp.buf.signature_help)
 vim.keymap.set('n', '<C-s>', vim.lsp.buf.signature_help)
+
+-- quicknote
+vim.keymap.set('n', '<leader>nc',
+  function()
+    require('quicknote').NewNoteAtCurrentLine()
+  end,
+  { desc = 'Creates a new node at the current line and enables the sign' }
+)
+vim.keymap.set('n', '<leader>no',
+  function()
+    require('quicknote').OpenNoteAtCurrentLine()
+  end,
+  { desc = 'Opens the note of the current line' }
+)
+vim.keymap.set('n', '<leader>nd',
+  function()
+    require('quicknote').DeleteNoteAtCurrentLine()
+  end,
+  { desc = 'Deletes the note of the current line' }
+)
+vim.keymap.set('n', '<leader>nl',
+  function()
+    require('quicknote').ListNotesForCurrentBuffer()
+  end,
+  { desc = 'Lists the notes for the current buffer' }
+)
+vim.keymap.set('n', '<leader>nt',
+  function()
+    require('quicknote').ToggleNoteSigns()
+  end,
+  { desc = 'Toggles the visibility of the note signs' }
+)
